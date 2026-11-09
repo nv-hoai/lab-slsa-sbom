@@ -10,6 +10,8 @@ release.tar.gz
 release.tar.gz.sig
 release.tar.gz.pem
 release.tar.gz.sha256
-sbom.spdx.json
-sbom.cyclonedx.json
-*.sarif
+/sbom.spdx.json
+/sbom.cyclonedx.json
+/grype-results.sarif
+/grype-report.txt
+/*.sarif

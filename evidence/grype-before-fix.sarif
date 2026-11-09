@@ -1,0 +1,288 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "grype",
+          "version": "0.121.2",
+          "informationUri": "https://github.com/anchore/grype",
+          "rules": [
+            {
+              "id": "GHSA-9hjg-9r4m-mvj7-requests",
+              "name": "PythonMatcherExactDirectMatch",
+              "shortDescription": {
+                "text": "GHSA-9hjg-9r4m-mvj7 medium vulnerability for requests package"
+              },
+              "fullDescription": {
+                "text": "Requests vulnerable to .netrc credentials leak via malicious URLs"
+              },
+              "helpUri": "https://github.com/advisories/GHSA-9hjg-9r4m-mvj7",
+              "help": {
+                "text": "Vulnerability GHSA-9hjg-9r4m-mvj7\nSeverity: medium\nPackage: requests\nVersion: 2.32.3\nFix Version: 2.32.4\nType: python\nLocation: /.python-packages/requests-2.32.3.dist-info/METADATA\nData Namespace: github:language:python\nLink: [GHSA-9hjg-9r4m-mvj7](https://github.com/advisories/GHSA-9hjg-9r4m-mvj7)",
+                "markdown": "**Vulnerability GHSA-9hjg-9r4m-mvj7**\n| Severity | Package | Version | Fix Version | Type | Location | Data Namespace | Link |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| medium  | requests  | 2.32.3  | 2.32.4  | python  | /.python-packages/requests-2.32.3.dist-info/METADATA  | github:language:python  | [GHSA-9hjg-9r4m-mvj7](https://github.com/advisories/GHSA-9hjg-9r4m-mvj7)  |\n"
+              },
+              "properties": {
+                "purls": [
+                  "pkg:pypi/requests@2.32.3"
+                ],
+                "security-severity": "5.3"
+              }
+            },
+            {
+              "id": "GHSA-68rp-wp8r-4726-flask",
+              "name": "PythonMatcherExactDirectMatch",
+              "shortDescription": {
+                "text": "GHSA-68rp-wp8r-4726 low vulnerability for flask package"
+              },
+              "fullDescription": {
+                "text": "Flask session does not add `Vary: Cookie` header when accessed in some ways"
+              },
+              "helpUri": "https://github.com/advisories/GHSA-68rp-wp8r-4726",
+              "help": {
+                "text": "Vulnerability GHSA-68rp-wp8r-4726\nSeverity: low\nPackage: flask\nVersion: 3.0.3\nFix Version: 3.1.3\nType: python\nLocation: /.python-packages/flask-3.0.3.dist-info/METADATA\nData Namespace: github:language:python\nLink: [GHSA-68rp-wp8r-4726](https://github.com/advisories/GHSA-68rp-wp8r-4726)",
+                "markdown": "**Vulnerability GHSA-68rp-wp8r-4726**\n| Severity | Package | Version | Fix Version | Type | Location | Data Namespace | Link |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| low  | flask  | 3.0.3  | 3.1.3  | python  | /.python-packages/flask-3.0.3.dist-info/METADATA  | github:language:python  | [GHSA-68rp-wp8r-4726](https://github.com/advisories/GHSA-68rp-wp8r-4726)  |\n"
+              },
+              "properties": {
+                "purls": [
+                  "pkg:pypi/flask@3.0.3"
+                ],
+                "security-severity": "2.3"
+              }
+            },
+            {
+              "id": "GHSA-gc5v-m9x4-r6x2-requests",
+              "name": "PythonMatcherExactDirectMatch",
+              "shortDescription": {
+                "text": "GHSA-gc5v-m9x4-r6x2 medium vulnerability for requests package"
+              },
+              "fullDescription": {
+                "text": "Requests has Insecure Temp File Reuse in its extract_zipped_paths() utility function"
+              },
+              "helpUri": "https://github.com/advisories/GHSA-gc5v-m9x4-r6x2",
+              "help": {
+                "text": "Vulnerability GHSA-gc5v-m9x4-r6x2\nSeverity: medium\nPackage: requests\nVersion: 2.32.3\nFix Version: 2.33.0\nType: python\nLocation: /.python-packages/requests-2.32.3.dist-info/METADATA\nData Namespace: github:language:python\nLink: [GHSA-gc5v-m9x4-r6x2](https://github.com/advisories/GHSA-gc5v-m9x4-r6x2)",
+                "markdown": "**Vulnerability GHSA-gc5v-m9x4-r6x2**\n| Severity | Package | Version | Fix Version | Type | Location | Data Namespace | Link |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n| medium  | requests  | 2.32.3  | 2.33.0  | python  | /.python-packages/requests-2.32.3.dist-info/METADATA  | github:language:python  | [GHSA-gc5v-m9x4-r6x2](https://github.com/advisories/GHSA-gc5v-m9x4-r6x2)  |\n"
+              },
+              "properties": {
+                "purls": [
+                  "pkg:pypi/requests@2.32.3"
+                ],
+                "security-severity": "4.4"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "GHSA-9hjg-9r4m-mvj7-requests",
+          "level": "warning",
+          "message": {
+            "text": "A medium vulnerability in python package: requests, version 2.32.3 was found at: /.python-packages/requests-2.32.3.dist-info/METADATA"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/.python-packages/requests-2.32.3.dist-info/METADATA"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "/.python-packages/requests-2.32.3.dist-info/METADATA",
+                  "fullyQualifiedName": ".://.python-packages/requests-2.32.3.dist-info/METADATA"
+                },
+                {
+                  "name": "/.python-packages/requests-2.32.3.dist-info/RECORD",
+                  "fullyQualifiedName": ".://.python-packages/requests-2.32.3.dist-info/RECORD"
+                },
+                {
+                  "name": "/.python-packages/requests-2.32.3.dist-info/top_level.txt",
+                  "fullyQualifiedName": ".://.python-packages/requests-2.32.3.dist-info/top_level.txt"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "2d5cb34bebf039d296905bb5e4ff8b3c959876e5932c92b5535d417551a6a8f5:1"
+          }
+        },
+        {
+          "ruleId": "GHSA-9hjg-9r4m-mvj7-requests",
+          "level": "warning",
+          "message": {
+            "text": "A medium vulnerability in python package: requests, version 2.32.3 was found at: /requirements.txt"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/requirements.txt"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "/requirements.txt",
+                  "fullyQualifiedName": ".://requirements.txt"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "bf41410b11d360b2b0fa68923d48fc6e073adc3cd597e7e603d887a455f982d7:1"
+          }
+        },
+        {
+          "ruleId": "GHSA-68rp-wp8r-4726-flask",
+          "level": "note",
+          "message": {
+            "text": "A low vulnerability in python package: flask, version 3.0.3 was found at: /.python-packages/flask-3.0.3.dist-info/METADATA"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/.python-packages/flask-3.0.3.dist-info/METADATA"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "/.python-packages/flask-3.0.3.dist-info/METADATA",
+                  "fullyQualifiedName": ".://.python-packages/flask-3.0.3.dist-info/METADATA"
+                },
+                {
+                  "name": "/.python-packages/flask-3.0.3.dist-info/RECORD",
+                  "fullyQualifiedName": ".://.python-packages/flask-3.0.3.dist-info/RECORD"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "48283773ae269f836091b63bb33051d4fe2e7bb942875d8e1484b9f7f02c628b:1"
+          }
+        },
+        {
+          "ruleId": "GHSA-68rp-wp8r-4726-flask",
+          "level": "note",
+          "message": {
+            "text": "A low vulnerability in python package: flask, version 3.0.3 was found at: /requirements.txt"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/requirements.txt"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "/requirements.txt",
+                  "fullyQualifiedName": ".://requirements.txt"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "335a60a15aba3153ba17723320701070d23ca01abb4007fa01349c105ab11ad3:1"
+          }
+        },
+        {
+          "ruleId": "GHSA-gc5v-m9x4-r6x2-requests",
+          "level": "warning",
+          "message": {
+            "text": "A medium vulnerability in python package: requests, version 2.32.3 was found at: /.python-packages/requests-2.32.3.dist-info/METADATA"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/.python-packages/requests-2.32.3.dist-info/METADATA"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "/.python-packages/requests-2.32.3.dist-info/METADATA",
+                  "fullyQualifiedName": ".://.python-packages/requests-2.32.3.dist-info/METADATA"
+                },
+                {
+                  "name": "/.python-packages/requests-2.32.3.dist-info/RECORD",
+                  "fullyQualifiedName": ".://.python-packages/requests-2.32.3.dist-info/RECORD"
+                },
+                {
+                  "name": "/.python-packages/requests-2.32.3.dist-info/top_level.txt",
+                  "fullyQualifiedName": ".://.python-packages/requests-2.32.3.dist-info/top_level.txt"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "2d5cb34bebf039d296905bb5e4ff8b3c959876e5932c92b5535d417551a6a8f5:1"
+          }
+        },
+        {
+          "ruleId": "GHSA-gc5v-m9x4-r6x2-requests",
+          "level": "warning",
+          "message": {
+            "text": "A medium vulnerability in python package: requests, version 2.32.3 was found at: /requirements.txt"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/requirements.txt"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "logicalLocations": [
+                {
+                  "name": "/requirements.txt",
+                  "fullyQualifiedName": ".://requirements.txt"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "bf41410b11d360b2b0fa68923d48fc6e073adc3cd597e7e603d887a455f982d7:1"
+          }
+        }
+      ]
+    }
+  ]
+}
