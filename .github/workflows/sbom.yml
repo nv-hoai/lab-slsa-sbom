@@ -1,0 +1,79 @@
+name: Generate & Scan SBOM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-sbom:
+    name: Build SPDX + CycloneDX SBOM and scan with Grype
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      # Install dependencies into the workspace so Syft can catalogue the
+      # actual resolved packages (including transitive dependencies).
+      - name: Install dependencies
+        run: python -m pip install --target .python-packages -r requirements.txt
+
+      - name: Generate SPDX SBOM
+        uses: anchore/sbom-action@ab5d7b5f48981941c4c5d6bf33aeb98fe3bae38c # v0.15.10
+        with:
+          path: .
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Generate CycloneDX SBOM
+        uses: anchore/sbom-action@ab5d7b5f48981941c4c5d6bf33aeb98fe3bae38c # v0.15.10
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: sbom.cyclonedx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      # Lab requirement: scan the generated SBOM (not just the source tree)
+      # and report vulnerabilities with Grype.
+      - name: Scan CycloneDX SBOM with Grype
+        id: scan
+        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7
+        with:
+          sbom: sbom.cyclonedx.json
+          fail-build: false
+          severity-cutoff: high
+          only-fixed: false
+          output-format: sarif
+          output-file: grype-results.sarif
+
+      - name: Upload SBOM Artifacts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: project-sbom-reports
+          path: |
+            sbom.spdx.json
+            sbom.cyclonedx.json
+
+      - name: Upload Vulnerability Scan Report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: vulnerability-scan-report
+          path: ${{ steps.scan.outputs.sarif }}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "google-workspace": {
+        "type": "local",
+        "command": [
+          "uvx",
+          "workspace-mcp",
+          "--tools",
+          "drive",
+          "docs",
+          "sheets"
+        ],
+        "environment": {
+          "GOOGLE_CLIENT_SECRET_PATH": "{env:HOME}/.config/workspace-mcp/client_secret.json",
+          "GOOGLE_OAUTH_REDIRECT_URI": "http://localhost:8000/oauth2callback"
+        },
+        "timeout": {
+          "startup": 120000,
+          "catalog": 60000
+        }
+      }
+    }
+  }
+}

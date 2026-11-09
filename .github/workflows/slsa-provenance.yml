@@ -1,0 +1,56 @@
+name: SLSA Level 3 Provenance Generator
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+permissions: read-all
+
+jobs:
+  # Job 1: build and package the application (hardened build)
+  build:
+    name: Build release artifact
+    outputs:
+      hashes: ${{ steps.hash.outputs.hashes }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      # Every third-party action is pinned to a full 40-character commit SHA.
+      - name: Checkout Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Package Application Artifact
+        run: |
+          tar -czvf release.tar.gz main.py app.py requirements.txt
+
+      - name: Generate SHA256 Checksum for SLSA
+        id: hash
+        run: |
+          # base64-encoded SHA256 is the format expected by the SLSA generator
+          echo "hashes=$(sha256sum release.tar.gz | base64 -w0)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-artifact
+          path: release.tar.gz
+
+  # Job 2: generate the signed SLSA provenance attestation
+  provenance:
+    name: Generate SLSA provenance
+    needs: [build]
+    permissions:
+      actions: read # Read the workflow run history
+      id-token: write # OIDC token used to sign the attestation
+      contents: write # Publish the attestation to release assets (when a release exists)
+    # The official SLSA generator must be referenced by tag (v2.0.0), not SHA.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
+    with:
+      base64-subjects: "${{ needs.build.outputs.hashes }}"
+      upload-assets: true
